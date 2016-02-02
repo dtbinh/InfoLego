@@ -1,22 +1,29 @@
 package Multi;
 import javax.sound.sampled.Port;
 
+import jp.ac.kagawa_u.infoexpr.Sensor.TouchSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.LED;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.Motor;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.hardware.sensor.SensorModes;
+import lejos.remote.ev3.RMISampleProvider;
 import lejos.remote.ev3.RemoteEV3;
 import lejos.remote.ev3.RemoteRequestEV3;
 import lejos.robotics.RegulatedMotor;
+import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import lejos.hardware.BrickFinder;
- 
-public class remoteMotorTest
+import lejos.hardware.port.*;
+
+public class remoteTouchTest1
 {
  
-    public static void remoteLEDTest()
+    public static void remoteTouchTest()
     {
         String[] names = {"EV3U", "EV3U2"};
         
@@ -27,35 +34,22 @@ public class remoteMotorTest
                 System.out.println("Connect " + names[i]);
                 bricks[i] = new RemoteRequestEV3(BrickFinder.find(names[i])[0].getIPAddress());
             }
-            RegulatedMotor[] rightMotors = new RegulatedMotor[bricks.length];
-            RegulatedMotor[] leftMotors = new RegulatedMotor[bricks.length];
+            //全ての元凶↓
+            EV3TouchSensor touch = new EV3TouchSensor(bricks[1].getPort("S1"));
+            //System.out.println("mimimin");
             
-            rightMotors[0] = new EV3LargeRegulatedMotor(BrickFinder.getLocal().getPort("B"));
-            leftMotors[0] = new EV3LargeRegulatedMotor(BrickFinder.getLocal().getPort("C"));
+            //RMISampleProvider sp = (RMISampleProvider) touch.getMode("Touch");
+            //float[] sample = sp.fetchSample();
             
-            for(int i = 1; i < bricks.length; i++) {
-                rightMotors[i] = bricks[i].createRegulatedMotor("B", 'L');
-            	leftMotors[i] = bricks[i].createRegulatedMotor("C", 'L');
-            }
-
-            int i = 0;
             while(Button.ENTER.isUp())
             {
-                rightMotors[(i) % bricks.length].setSpeed(100);
-                leftMotors[(i) % bricks.length].setSpeed(0);
-                rightMotors[(i) % bricks.length].forward();
-                leftMotors[(i++) % bricks.length].forward();
-                Delay.msDelay(100);
+            	//sample = sp.fetchSample();
+            	//for (int i = 0; i < sample.length; i++) {
+            	//	System.out.println(i + " = " + sample[0]);
+				//}
             }
+            //sp.close();
             
-            for(RegulatedMotor m : rightMotors) {
-            	m.close();
-            }
-            for(RegulatedMotor m : leftMotors) {
-            	m.close();
-            }
-                
-     
             for(int k = 1; k < bricks.length; k++) {
                 bricks[k].disConnect();
             }
@@ -64,11 +58,12 @@ public class remoteMotorTest
         catch (Exception e)
         {
             System.out.println("Got exception " + e);
+            Delay.msDelay(10000);
         }
     }    
  
     public static void main(String[] args)
     {
-        remoteLEDTest();
+        remoteTouchTest();
     }
 }
