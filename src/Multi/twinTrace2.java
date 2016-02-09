@@ -21,7 +21,7 @@ import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import lejos.hardware.BrickFinder;
  
-public class twinTrace
+public class twinTrace2
 {
  
     public static void remoteLEDTest()
@@ -101,10 +101,15 @@ public class twinTrace
                 	}
                 }
                 
-                for (int i = 0; i < bricks.length; i++) {
-                	rightMotors[i].forward();
-                	leftMotors[i].forward();
-                }
+                rightMotors[1].rotate(180, true);
+                leftMotors[1].rotate(180, true);
+                rightMotors[0].rotate(180, true);
+                leftMotors[0].rotate(180);
+                //}
+                //for (int i = 0; i < bricks.length; i++) {
+                //	  rightMotors[i].rotate(180, true);
+                //	  leftMotors[i].rotate(180, true);
+                //}
             }
             
             for (int i = 0; i < bricks.length; i++) {
