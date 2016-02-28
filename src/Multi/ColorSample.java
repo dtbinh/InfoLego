@@ -21,7 +21,7 @@ import lejos.hardware.BrickFinder;
 public class ColorSample
 {
  
-    public static void remoteLEDTest()
+    public static void remoteColorTest()
     {
         String[] names = {"EV3U", "EV3U2"};
         
@@ -86,6 +86,6 @@ public class ColorSample
  
     public static void main(String[] args)
     {
-        remoteLEDTest();
+        remoteColorTest();
     }
 }

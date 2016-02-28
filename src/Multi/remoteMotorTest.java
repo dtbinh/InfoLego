@@ -1,24 +1,18 @@
 package Multi;
-import javax.sound.sampled.Port;
 
-import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
-import lejos.hardware.LED;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.motor.Motor;
-import lejos.remote.ev3.RemoteEV3;
 import lejos.remote.ev3.RemoteRequestEV3;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
-import lejos.hardware.BrickFinder;
  
 public class remoteMotorTest
 {
  
-    public static void remoteLEDTest()
+    public static void remoteMotorTest()
     {
-        String[] names = {"EV3U", "EV3U2"};
+        String[] names = {"EV3A", "EV3B"};
         
         RemoteRequestEV3[] bricks = new RemoteRequestEV3[names.length];
         try {
@@ -39,7 +33,7 @@ public class remoteMotorTest
             }
 
             int i = 0;
-            while(Button.ENTER.isUp())
+            while(Button.ESCAPE.isUp())
             {
                 rightMotors[(i) % bricks.length].setSpeed(100);
                 leftMotors[(i) % bricks.length].setSpeed(0);
@@ -69,6 +63,6 @@ public class remoteMotorTest
  
     public static void main(String[] args)
     {
-        remoteLEDTest();
+        remoteMotorTest();
     }
 }

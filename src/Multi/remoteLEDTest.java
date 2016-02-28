@@ -11,7 +11,7 @@ public class remoteLEDTest
  
     public static void remoteLEDTest()
     {
-        String[] names = {"EV3U", "EV3U2"};
+        String[] names = {"EV3A", "EV3B"};
         
         Brick[] bricks = new Brick[names.length];
         try {

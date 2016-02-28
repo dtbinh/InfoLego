@@ -26,7 +26,7 @@ public class twinTrace
  
     public static void remoteLEDTest()
     {
-        String[] names = {"EV3U", "EV3U2"};
+        String[] names = {"EV3A", "EV3B"};
         int lowSpeed = 0, highSpeed = 200;
         double BLACK = 0.2, WHITE = 0.9;
         
@@ -101,9 +101,18 @@ public class twinTrace
                 	}
                 }
                 
-                for (int i = 0; i < bricks.length; i++) {
-                	rightMotors[i].forward();
-                	leftMotors[i].forward();
+                if (leftMotors[1].getSpeed() == 0) {
+                    rightMotors[1].forward();
+                    rightMotors[0].forward();
+
+                } else if (rightMotors[1].getSpeed() == 0) {
+                    leftMotors[1].forward();
+                    leftMotors[0].forward();
+                } else {
+                    rightMotors[1].forward();
+                    leftMotors[1].forward();
+                    rightMotors[0].forward();
+                    leftMotors[0].forward();
                 }
             }
             

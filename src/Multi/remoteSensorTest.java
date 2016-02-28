@@ -20,9 +20,8 @@ public class remoteSensorTest
  
     public static void remoteTouchTest()
     {
-        String[] names = {"EV3U", "EV3U2"};
+        String[] names = {"EV3A", "EV3B"};
         
-        ;
         try {
             RemoteEV3 brick = new RemoteEV3(BrickFinder.find(names[1])[0].getIPAddress());
             System.out.println(BrickFinder.find(names[1])[0].getIPAddress());
