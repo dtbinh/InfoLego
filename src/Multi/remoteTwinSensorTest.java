@@ -16,8 +16,9 @@ public class remoteTwinSensorTest {
             RemoteEV3 brick[] = new RemoteEV3[names.length];
             for (int i = 1; i < brick.length; i++) {
                 brick[i] = new RemoteEV3(
-                BrickFinder.find(names[i])[0].getIPAddress());
-                System.out.println(BrickFinder.find(names[i])[0].getIPAddress());
+                        BrickFinder.find(names[i])[0].getIPAddress());
+                System.out
+                        .println(BrickFinder.find(names[i])[0].getIPAddress());
             }
 
             // センサーのインスタンスの生成
@@ -38,7 +39,8 @@ public class remoteTwinSensorTest {
                     sp[i].fetchSample(sample, 0);
 
                     for (int j = 0; j < sample.length; j++) {
-                        System.out.println(names[i] + "Touch" + " = " + sample[j]);
+                        System.out.println(names[i] + "Touch" + " = "
+                                + sample[j]);
                         Delay.msDelay(1000);
                     }
                 }
